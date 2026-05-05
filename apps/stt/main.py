@@ -12,9 +12,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-print("Loading Whisper model...")
 model = WhisperModel("base", device="cpu", compute_type="int8")
-print("Model ready.")
 
 @app.post("/transcribe")
 async def transcribe(audio: UploadFile = File(...)):

@@ -6,7 +6,6 @@ async function connectDB() {
   if (isConnected) return;
   await mongoose.connect(process.env.MONGODB_URI);
   isConnected = true;
-  console.log("MongoDB connected");
 }
 
 const EntrySchema = new mongoose.Schema(

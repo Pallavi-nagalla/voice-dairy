@@ -18,14 +18,10 @@ if (-Not $mongod) {
     exit 1
 }
 
-# Create data folder inside project if it doesn't exist
-$dbPath = "$PSScriptRoot\..\data\db"
 $dbPath = (Resolve-Path "$PSScriptRoot\..").Path + "\data\db"
 
 if (-Not (Test-Path $dbPath)) {
     New-Item -ItemType Directory -Path $dbPath -Force | Out-Null
-    Write-Host "[mongo] Created data directory at $dbPath" -ForegroundColor Green
 }
 
-Write-Host "[mongo] Starting MongoDB..." -ForegroundColor Green
 & $mongod --dbpath $dbPath --quiet

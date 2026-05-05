@@ -14,16 +14,6 @@ const moodGradients: Record<string, string> = {
   angry: "from-red-700 via-orange-600 to-yellow-500",
 };
 
-const moodEmoji: Record<string, string> = {
-  happy: "😊",
-  sad: "😢",
-  nostalgic: "🌅",
-  anxious: "😰",
-  excited: "🎉",
-  calm: "😌",
-  angry: "😤",
-};
-
 export default function StoryPage() {
   const { id } = useParams();
   const router = useRouter();
@@ -93,7 +83,7 @@ export default function StoryPage() {
             month: "long",
             year: "numeric",
           })}{" "}
-          · {moodEmoji[entry.mood]} {entry.mood}
+          · {entry.mood}
         </motion.p>
 
         <motion.h1

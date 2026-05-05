@@ -81,7 +81,7 @@ export default function HomePage() {
         className="absolute top-6 right-6 text-sm transition"
         style={{ color: "#8b7355", textDecoration: "underline" }}
       >
-        📖 My Entries
+        My Entries
       </Link>
 
       <motion.h1
@@ -119,7 +119,7 @@ export default function HomePage() {
               boxShadow: "0 10px 30px rgba(212, 175, 55, 0.3)",
             }}
           >
-            🎤
+            Mic
           </motion.button>
         )}
 
@@ -137,7 +137,7 @@ export default function HomePage() {
               color: "#3d3d3d",
             }}
           >
-            ⏹️
+            Stop
           </motion.button>
         )}
 

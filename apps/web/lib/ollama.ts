@@ -28,9 +28,6 @@ You MUST respond with ONLY a JSON object. No markdown. No backticks. No explanat
     const data = await res.json();
     const text = (data.response || "").trim();
 
-    console.log("[ollama raw response]", text.slice(0, 200));
-
-    // extract first { ... } block regardless of surrounding text
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (jsonMatch) {
       return JSON.parse(jsonMatch[0]);
@@ -38,8 +35,6 @@ You MUST respond with ONLY a JSON object. No markdown. No backticks. No explanat
 
     throw new Error("No JSON found in response");
   } catch (error: any) {
-    console.error("[ollama error]", error.message);
-    // graceful fallback
     return {
       title: new Date().toLocaleDateString("en-IN", {
         day: "numeric",

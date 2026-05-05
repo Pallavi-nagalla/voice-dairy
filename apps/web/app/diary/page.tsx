@@ -4,16 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const moodEmoji: Record<string, string> = {
-  happy: "😊",
-  sad: "😢",
-  nostalgic: "🌅",
-  anxious: "😰",
-  excited: "🎉",
-  calm: "😌",
-  angry: "😤",
-};
-
 const moodBg: Record<string, string> = {
   happy: "from-yellow-400/10 to-orange-400/10 border-yellow-400/20",
   sad: "from-blue-600/10 to-indigo-800/10 border-blue-500/20",
@@ -127,8 +117,11 @@ export default function DiaryPage() {
                       year: "numeric",
                     })}
                   </span>
-                  <span className="text-2xl">
-                    {moodEmoji[entry.mood] || "📝"}
+                  <span
+                    className="text-xs font-semibold"
+                    style={{ color: "#8b7355" }}
+                  >
+                    {entry.mood}
                   </span>
                 </div>
                 <h2
