@@ -70,23 +70,37 @@ export default function HomePage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-4 relative">
+    <main
+      className="min-h-screen flex flex-col items-center justify-center px-4 relative"
+      style={{
+        background: "linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%)",
+      }}
+    >
       <Link
         href="/diary"
-        className="absolute top-6 right-6 text-sm text-gray-400 hover:text-white transition"
+        className="absolute top-6 right-6 text-sm transition"
+        style={{ color: "#8b7355", textDecoration: "underline" }}
       >
-        My Entries →
+        📖 My Entries
       </Link>
 
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-4xl font-bold mb-2 tracking-tight"
+        className="text-6xl font-bold mb-4 tracking-tight"
+        style={{ fontFamily: "'Playfair Display', serif", color: "#3d3d3d" }}
       >
-        🎙️ Voice Diary
+        Voice Diary
       </motion.h1>
-      <p className="text-gray-500 text-sm mb-12">
-        Speak your mind. AI does the rest.
+      <p
+        className="text-lg mb-12"
+        style={{
+          color: "#8b7355",
+          fontFamily: "'Crimson Text', serif",
+          fontStyle: "italic",
+        }}
+      >
+        Whisper your thoughts. The pages await.
       </p>
 
       <AnimatePresence mode="wait">
@@ -99,7 +113,11 @@ export default function HomePage() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={startRecording}
-            className="w-32 h-32 rounded-full bg-red-500 hover:bg-red-400 flex items-center justify-center text-5xl shadow-2xl shadow-red-500/40 transition-colors"
+            className="w-32 h-32 rounded-full flex items-center justify-center text-5xl shadow-2xl transition-all duration-300"
+            style={{
+              background: "linear-gradient(135deg, #d4af37 0%, #b8941f 100%)",
+              boxShadow: "0 10px 30px rgba(212, 175, 55, 0.3)",
+            }}
           >
             🎤
           </motion.button>
@@ -112,7 +130,12 @@ export default function HomePage() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             onClick={stopRecording}
-            className="w-32 h-32 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center text-5xl shadow-xl border-2 border-red-500 animate-pulse transition"
+            className="w-32 h-32 rounded-full flex items-center justify-center text-5xl shadow-xl border-2 animate-pulse transition"
+            style={{
+              background: "linear-gradient(135deg, #f5f0e8 0%, #e8dcc8 100%)",
+              borderColor: "#d4af37",
+              color: "#3d3d3d",
+            }}
           >
             ⏹️
           </motion.button>
@@ -125,11 +148,14 @@ export default function HomePage() {
             animate={{ opacity: 1 }}
             className="flex flex-col items-center gap-5"
           >
-            <div className="w-14 h-14 border-4 border-white border-t-transparent rounded-full animate-spin" />
-            <p className="text-gray-400 text-sm">
+            <div
+              className="w-14 h-14 border-4 border-t-transparent rounded-full animate-spin"
+              style={{ borderColor: "#d4af37", borderTopColor: "transparent" }}
+            />
+            <p className="text-sm" style={{ color: "#8b7355" }}>
               {status === "transcribing" && "Transcribing your voice..."}
-              {status === "refining" && "Ollama is refining your entry..."}
-              {status === "saving" && "Saving to diary..."}
+              {status === "refining" && "Refining your thoughts..."}
+              {status === "saving" && "Preserving in pages..."}
             </p>
           </motion.div>
         )}
@@ -142,15 +168,35 @@ export default function HomePage() {
             className="max-w-md w-full"
           >
             <div
-              className={`rounded-2xl p-6 bg-gradient-to-br ${
-                moodGradients[refined.mood] || moodGradients.calm
-              } text-white shadow-2xl`}
+              className="rounded-lg p-8 shadow-xl"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(245, 240, 232, 0.9) 100%)",
+                border: "1px solid rgba(212, 175, 55, 0.3)",
+              }}
             >
-              <p className="text-xs uppercase tracking-widest opacity-70 mb-1">
+              <p
+                className="text-xs uppercase tracking-widest mb-2"
+                style={{ color: "#8b7355", opacity: 0.7 }}
+              >
                 {refined.mood} · {refined.tags?.join(", ")}
               </p>
-              <h2 className="text-2xl font-bold mb-3">{refined.title}</h2>
-              <p className="text-sm leading-relaxed opacity-90 line-clamp-4">
+              <h2
+                className="text-2xl font-bold mb-3"
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                  color: "#3d3d3d",
+                }}
+              >
+                {refined.title}
+              </h2>
+              <p
+                className="text-base leading-relaxed line-clamp-4"
+                style={{
+                  color: "#3d3d3d",
+                  fontFamily: "'Crimson Text', serif",
+                }}
+              >
                 {refined.refinedEntry}
               </p>
             </div>
@@ -160,15 +206,25 @@ export default function HomePage() {
                   setStatus("idle");
                   setRefined(null);
                 }}
-                className="flex-1 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-sm transition"
+                className="flex-1 py-3 rounded-lg text-sm transition"
+                style={{
+                  background: "#f5f0e8",
+                  color: "#3d3d3d",
+                  border: "1px solid #d4af37",
+                }}
               >
                 Record Another
               </button>
               <Link
                 href="/diary"
-                className="flex-1 py-3 rounded-xl bg-white text-gray-900 font-semibold text-sm text-center hover:bg-gray-100 transition"
+                className="flex-1 py-3 rounded-lg font-semibold text-sm text-center transition"
+                style={{
+                  background: "#d4af37",
+                  color: "#fff",
+                  textDecoration: "none",
+                }}
               >
-                View All Entries
+                View All
               </Link>
             </div>
           </motion.div>

@@ -38,28 +38,54 @@ export default function StoryPage() {
 
   if (!entry)
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-950">
-        <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin" />
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{
+          background: "linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%)",
+        }}
+      >
+        <div
+          className="w-10 h-10 border-4 border-t-transparent rounded-full animate-spin"
+          style={{ borderColor: "#d4af37", borderTopColor: "transparent" }}
+        />
       </div>
     );
 
-  const gradient = moodGradients[entry.mood] || moodGradients.calm;
   const paragraphs = (entry.refinedEntry || "").split("\n").filter(Boolean);
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${gradient}`}>
+    <div
+      className="min-h-screen"
+      style={{
+        background: "linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%)",
+      }}
+    >
       <button
         onClick={() => router.back()}
-        className="fixed top-5 left-5 text-white/60 hover:text-white text-sm transition z-10"
+        className="fixed top-5 left-5 text-sm transition z-10 px-3 py-1 rounded"
+        style={{ color: "#8b7355", textDecoration: "underline" }}
       >
         ← Back
       </button>
 
-      <div className="max-w-xl mx-auto px-6 py-24 flex flex-col items-center">
+      <div
+        className="max-w-3xl mx-auto px-6 md:px-12 py-12 md:py-24"
+        style={{
+          background:
+            "linear-gradient(to right, rgba(250, 248, 243, 0.5) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(245, 240, 232, 0.5) 100%)",
+          boxShadow:
+            "inset -1px 0 0 rgba(0, 0, 0, 0.05), inset 1px 0 0 rgba(255, 255, 255, 0.5)",
+          minHeight: "calc(100vh - 2rem)",
+          marginTop: "2rem",
+          marginBottom: "2rem",
+          borderRadius: "2px",
+        }}
+      >
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-white/60 text-sm mb-3 text-center"
+          className="text-sm mb-6 text-center uppercase tracking-widest"
+          style={{ color: "#8b7355", fontFamily: "'Crimson Text', serif" }}
         >
           {new Date(entry.createdAt).toLocaleDateString("en-IN", {
             weekday: "long",
@@ -74,7 +100,8 @@ export default function StoryPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-3xl md:text-4xl font-bold text-white text-center mb-6 leading-tight"
+          className="text-4xl md:text-5xl font-bold text-center mb-8 leading-tight"
+          style={{ fontFamily: "'Playfair Display', serif", color: "#3d3d3d" }}
         >
           {entry.title}
         </motion.h1>
@@ -89,7 +116,11 @@ export default function StoryPage() {
             {entry.tags.map((tag: string) => (
               <span
                 key={tag}
-                className="text-xs px-3 py-1 rounded-full bg-white/20 text-white"
+                className="text-xs px-3 py-1 rounded-full"
+                style={{
+                  background: "rgba(212, 175, 55, 0.2)",
+                  color: "#8b7355",
+                }}
               >
                 {tag}
               </span>
@@ -101,16 +132,29 @@ export default function StoryPage() {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ delay: 0.25 }}
-          className="w-16 h-px bg-white/40 mb-8"
+          className="h-px mb-12"
+          style={{
+            background:
+              "linear-gradient(to right, transparent, #d4af37 50%, transparent)",
+          }}
         />
 
-        <div className="space-y-5 text-white/90 leading-relaxed text-base w-full">
+        <div
+          className="space-y-6"
+          style={{
+            color: "#3d3d3d",
+            fontFamily: "'Crimson Text', serif",
+            fontSize: "18px",
+            lineHeight: "1.9",
+          }}
+        >
           {paragraphs.map((para: string, i: number) => (
             <motion.p
               key={i}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + i * 0.1 }}
+              className="indent-8 first:indent-0"
             >
               {para}
             </motion.p>
@@ -121,11 +165,13 @@ export default function StoryPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
-          className="mt-14 w-full"
+          className="mt-16 pt-8 border-t"
+          style={{ borderColor: "rgba(212, 175, 55, 0.2)" }}
         >
           <button
             onClick={() => setShowRaw(!showRaw)}
-            className="text-white/40 text-xs hover:text-white/70 transition"
+            className="text-sm transition"
+            style={{ color: "#8b7355", textDecoration: "underline" }}
           >
             {showRaw ? "Hide" : "Show"} raw transcript
           </button>
@@ -133,7 +179,14 @@ export default function StoryPage() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="mt-3 text-white/40 text-xs leading-relaxed italic border-l-2 border-white/20 pl-3"
+              className="mt-4 text-sm leading-relaxed italic p-4 rounded"
+              style={{
+                background: "rgba(212, 175, 55, 0.1)",
+                color: "#5d5d5d",
+                fontFamily: "'Crimson Text', serif",
+                borderLeft: "3px solid #d4af37",
+                paddingLeft: "16px",
+              }}
             >
               {entry.rawTranscript}
             </motion.p>

@@ -1,3 +1,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&family=Playfair+Display:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap");
+
+body {
+  background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
+  color: #3d3d3d;
+  font-family: "Lora", "Crimson Text", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Book-like page styling */
+.book-page {
+  background: linear-gradient(to right, #fdfbf7 0%, #fcf9f2 50%, #faf7f0 100%);
+  box-shadow:
+    inset -1px 0 0 rgba(0, 0, 0, 0.1),
+    inset 1px 0 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Decorative line */
+.decorative-line {
+  background: linear-gradient(to right, transparent, #d4af37 50%, transparent);
+}
+
+/* Entry card styling */
+.entry-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(245, 240, 232, 0.8) 100%
+  );
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  transition: all 0.3s ease;
+}
+
+.entry-card:hover {
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+p {
+  font-family: "Crimson Text", serif;
+  font-size: 18px;
+  line-height: 1.8;
+}
